@@ -38,9 +38,7 @@ class _HomeState extends State<Home> {
       TutorialItems(
           globalKey: keyMenu,
           touchScreen: true,
-          top: 200,
-          left: 50,
-          color: Color.fromRGBO(0, 179, 104, 0.6),
+          backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),
           children: [
             Text(
               "Ali é nosso menu , você consegue ver varias coisas nele",
@@ -61,9 +59,7 @@ class _HomeState extends State<Home> {
       TutorialItems(
         globalKey: keyChat,
         touchScreen: true,
-        top: 200,
-        left: 50,
-        color: Color.fromRGBO(0, 179, 104, 0.6),
+        backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),
         borderRadius: Radius.circular(25.0),
         children: [
           Text(
@@ -86,9 +82,7 @@ class _HomeState extends State<Home> {
       TutorialItems(
         globalKey: keyContainer,
         touchScreen: true,
-        bottom: 50,
-        left: 50,
-        color: Color.fromRGBO(0, 179, 104, 0.6),
+        backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),
         children: [
           Text(
             "Nessa sessão você vai ter acesso a todas as  Rasteirinhas",

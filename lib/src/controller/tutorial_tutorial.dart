@@ -40,40 +40,47 @@ class Tutorial {
                           dy: offset.dy + (sizeWidget.height / 2),
                           width: sizeWidget.width,
                           height: sizeWidget.height,
-                          color: element.color,
+                          color: element.backgroundColor,
                           borderRadius: element.borderRadius,
                         ),
                       ),
-                      Positioned(
-                        top: element.top,
-                        bottom: element.bottom,
-                        left: element.left,
-                        right: element.right,
-                        child: Container(
-                          width: size.width * 0.8,
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Center(
                           child: Column(
-                            crossAxisAlignment: element.crossAxisAlignment,
-                            mainAxisAlignment: element.mainAxisAlignment,
                             children: [
-                              ...element.children!,
-                              GestureDetector(
-                                child: element.widgetNext ??
-                                    Text(
-                                      "NEXT",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                onTap: () {
-                                  entries[count].remove();
-                                  count++;
-                                  if (count != entries.length) {
-                                    overlayState.insert(entries[count]);
-                                  }
-                                },
+                              Expanded(
+                                flex: 1,
+                                child: Container(),
+                              ),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: element.children,
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: GestureDetector(
+                                  child: element.widgetNext ??
+                                      Text(
+                                        "NEXT",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                  onTap: () {
+                                    entries[count].remove();
+                                    count++;
+                                    if (count != entries.length) {
+                                      overlayState.insert(entries[count]);
+                                    }
+                                  },
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
