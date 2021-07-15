@@ -1,3 +1,4 @@
+import 'package:app_tutorial/src/models/space_division.dart';
 import 'package:flutter/material.dart';
 import 'package:app_tutorial/src/models/shape_models.dart';
 
@@ -12,6 +13,7 @@ class TutorialItems {
   final MainAxisAlignment mainAxisAlignment;
   final bool touchScreen;
   final Function()? onNext;
+  final SpaceDivision heightDivision;
 
   TutorialItems({
     this.globalKey,
@@ -24,5 +26,6 @@ class TutorialItems {
     this.borderRadius,
     this.touchScreen = false,
     this.onNext,
+    this.heightDivision = const SpaceDivision(1, 6, 1),
   });
 }

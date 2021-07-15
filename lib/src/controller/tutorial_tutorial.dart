@@ -26,7 +26,7 @@ class Tutorial {
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
                         }
-                        if(element.onNext != null) element.onNext!();
+                        if (element.onNext != null) element.onNext!();
                       }
                     : () {},
                 child: Scaffold(
@@ -51,18 +51,18 @@ class Tutorial {
                           child: Column(
                             children: [
                               Expanded(
-                                flex: 1,
+                                flex: element.heightDivision.first,
                                 child: Container(),
                               ),
                               Expanded(
-                                flex: 4,
+                                flex: element.heightDivision.middle,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: element.children,
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex: element.heightDivision.last,
                                 child: GestureDetector(
                                   child: element.widgetNext ??
                                       Text(
@@ -75,7 +75,8 @@ class Tutorial {
                                     if (count != entries.length) {
                                       overlayState.insert(entries[count]);
                                     }
-                                    if(element.onNext != null) element.onNext!();
+                                    if (element.onNext != null)
+                                      element.onNext!();
                                   },
                                 ),
                               ),
