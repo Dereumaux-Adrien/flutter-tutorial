@@ -2,14 +2,18 @@
 /// - height is divided in three parts (empty top, middle where the text is
 ///     tutorial text is and the last one where the button is located)
 class SpaceDivision {
-  /// First from top to bottom or left to right
-  final int first;
-  final int middle;
-  final int last;
+  /// First from top to bottom
+  final int topSpace;
+  final int textSpace;
+  final int middleSpace;
+  final int nextSpace;
+  final int bottomSpace;
 
-  const SpaceDivision(
-    this.first,
-    this.middle,
-    this.last,
-  );
+  const SpaceDivision({
+    this.topSpace = 1,
+    this.textSpace = 6,
+    this.middleSpace = 0,
+    this.nextSpace = 1,
+    this.bottomSpace = 0,
+  });
 }

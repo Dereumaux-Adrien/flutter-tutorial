@@ -26,6 +26,6 @@ class TutorialItems {
     this.borderRadius,
     this.addedPadding = 0,
     this.touchScreen = false,
-    this.heightDivision = const SpaceDivision(1, 6, 1),
+    this.heightDivision = const SpaceDivision(),
   });
 }

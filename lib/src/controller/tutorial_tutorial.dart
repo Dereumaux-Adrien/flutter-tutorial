@@ -50,18 +50,22 @@ class Tutorial {
                           child: Column(
                             children: [
                               Expanded(
-                                flex: element.heightDivision.first,
+                                flex: element.heightDivision.topSpace,
                                 child: Container(),
                               ),
                               Expanded(
-                                flex: element.heightDivision.middle,
+                                flex: element.heightDivision.textSpace,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: element.children,
                                 ),
                               ),
                               Expanded(
-                                flex: element.heightDivision.last,
+                                flex: element.heightDivision.middleSpace,
+                                child: Container(),
+                              ),
+                              Expanded(
+                                flex: element.heightDivision.nextSpace,
                                 child: GestureDetector(
                                   child: element.widgetNext ??
                                       Text(
@@ -76,6 +80,10 @@ class Tutorial {
                                     }
                                   },
                                 ),
+                              ),
+                              Expanded(
+                                flex: element.heightDivision.bottomSpace,
+                                child: Container(),
                               ),
                             ],
                           ),
