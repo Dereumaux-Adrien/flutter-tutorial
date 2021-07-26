@@ -26,7 +26,6 @@ class Tutorial {
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
                         }
-                        if (element.onNext != null) element.onNext!();
                       }
                     : () {},
                 child: Scaffold(
@@ -39,8 +38,8 @@ class Tutorial {
                           shapeFocus: element.shapeFocus,
                           dx: offset.dx + (sizeWidget.width / 2),
                           dy: offset.dy + (sizeWidget.height / 2),
-                          width: sizeWidget.width,
-                          height: sizeWidget.height,
+                          width: sizeWidget.width + element.addedPadding,
+                          height: sizeWidget.height + element.addedPadding,
                           color: element.backgroundColor,
                           borderRadius: element.borderRadius,
                         ),
@@ -75,8 +74,6 @@ class Tutorial {
                                     if (count != entries.length) {
                                       overlayState.insert(entries[count]);
                                     }
-                                    if (element.onNext != null)
-                                      element.onNext!();
                                   },
                                 ),
                               ),

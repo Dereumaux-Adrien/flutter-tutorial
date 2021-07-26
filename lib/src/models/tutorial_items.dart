@@ -9,10 +9,10 @@ class TutorialItems {
   final Widget? widgetNext;
   final Color? backgroundColor;
   final Radius? borderRadius;
+  final int addedPadding;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final bool touchScreen;
-  final Function()? onNext;
   final SpaceDivision heightDivision;
 
   TutorialItems({
@@ -24,8 +24,8 @@ class TutorialItems {
     this.widgetNext,
     this.backgroundColor,
     this.borderRadius,
+    this.addedPadding = 0,
     this.touchScreen = false,
-    this.onNext,
     this.heightDivision = const SpaceDivision(1, 6, 1),
   });
 }
