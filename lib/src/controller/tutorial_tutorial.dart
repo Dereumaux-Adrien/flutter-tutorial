@@ -1,25 +1,16 @@
 library tutorial;
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:app_tutorial/src/models/tutorial_items.dart';
 import 'package:app_tutorial/src/painter/painter.dart';
 
 class Tutorial {
-  static Future<void> showTutorial(
-    BuildContext context,
-    List<TutorialItems> children,
-  ) async {
+  static showTutorial(
+      BuildContext context, List<TutorialItems> children) async {
     int count = 0;
     var size = MediaQuery.of(context).size;
     OverlayState overlayState = Overlay.of(context)!;
     List<OverlayEntry> entries = [];
-
-    /// Completer is used to make this function a real Future that can be
-    /// checked to allow for an execution to take place after the Tutorial
-    var completer = new Completer<void>();
-
     children.forEach(
       (element) async {
         var offset = _capturePositionWidget(element.globalKey!);
@@ -34,9 +25,8 @@ class Tutorial {
                         count++;
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
-                        } else {
-                          completer.complete();
                         }
+                        if(element.onNext != null) element.onNext!();
                       }
                     : () {},
                 child: Scaffold(
@@ -49,8 +39,8 @@ class Tutorial {
                           shapeFocus: element.shapeFocus,
                           dx: offset.dx + (sizeWidget.width / 2),
                           dy: offset.dy + (sizeWidget.height / 2),
-                          width: sizeWidget.width + element.addedPadding,
-                          height: sizeWidget.height + element.addedPadding,
+                          width: sizeWidget.width,
+                          height: sizeWidget.height,
                           color: element.backgroundColor,
                           borderRadius: element.borderRadius,
                         ),
@@ -61,22 +51,18 @@ class Tutorial {
                           child: Column(
                             children: [
                               Expanded(
-                                flex: element.heightDivision.topSpace,
+                                flex: 1,
                                 child: Container(),
                               ),
                               Expanded(
-                                flex: element.heightDivision.textSpace,
+                                flex: 4,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: element.children,
                                 ),
                               ),
                               Expanded(
-                                flex: element.heightDivision.middleSpace,
-                                child: Container(),
-                              ),
-                              Expanded(
-                                flex: element.heightDivision.nextSpace,
+                                flex: 1,
                                 child: GestureDetector(
                                   child: element.widgetNext ??
                                       Text(
@@ -88,15 +74,10 @@ class Tutorial {
                                     count++;
                                     if (count != entries.length) {
                                       overlayState.insert(entries[count]);
-                                    } else {
-                                      completer.complete();
                                     }
+                                    if(element.onNext != null) element.onNext!();
                                   },
                                 ),
-                              ),
-                              Expanded(
-                                flex: element.heightDivision.bottomSpace,
-                                child: Container(),
                               ),
                             ],
                           ),
@@ -112,7 +93,6 @@ class Tutorial {
       },
     );
     overlayState.insert(entries[0]);
-    return completer.future;
   }
 
   static Offset _capturePositionWidget(GlobalKey key) {
