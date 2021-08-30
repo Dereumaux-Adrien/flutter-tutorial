@@ -2,7 +2,7 @@ import 'package:app_tutorial/src/models/children_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:app_tutorial/src/models/shape_models.dart';
 
-class TutorialItems {
+class TutorialItem {
   final GlobalKey? globalKey;
   final ShapeFocus? shapeFocus;
   final ChildrenLayout childrenLayout;
@@ -15,7 +15,7 @@ class TutorialItems {
   final bool touchScreen;
   final Function()? onNext;
 
-  TutorialItems({
+  TutorialItem({
     this.globalKey,
     required this.children,
     this.childrenLayout = ChildrenLayout.none,

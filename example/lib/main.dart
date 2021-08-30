@@ -30,12 +30,12 @@ class _HomeState extends State<Home> {
   var keyContainer = GlobalKey();
   var keyChat = GlobalKey();
 
-  List<TutorialItems> itens = [];
+  List<TutorialItem> itens = [];
 
   @override
   void initState() {
     itens.addAll({
-      TutorialItems(
+      TutorialItem(
           globalKey: keyMenu,
           touchScreen: true,
           backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),
@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           shapeFocus: ShapeFocus.oval),
-      TutorialItems(
+      TutorialItem(
         globalKey: keyChat,
         touchScreen: true,
         backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
         ),
         shapeFocus: ShapeFocus.roundedSquare,
       ),
-      TutorialItems(
+      TutorialItem(
         globalKey: keyContainer,
         touchScreen: true,
         backgroundColor: Color.fromRGBO(0, 179, 104, 0.6),

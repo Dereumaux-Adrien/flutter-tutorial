@@ -1,12 +1,14 @@
 library tutorial;
 
 import 'package:flutter/material.dart';
-import 'package:app_tutorial/src/models/tutorial_items.dart';
+import 'package:app_tutorial/src/models/tutorial_item.dart';
 import 'package:app_tutorial/src/painter/painter.dart';
 
 class Tutorial {
   static showTutorial(
-      BuildContext context, List<TutorialItems> children) async {
+    BuildContext context,
+    List<TutorialItem> children,
+  ) async {
     int count = 0;
     var size = MediaQuery.of(context).size;
     OverlayState overlayState = Overlay.of(context)!;
@@ -26,7 +28,7 @@ class Tutorial {
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
                         }
-                        if(element.onNext != null) element.onNext!();
+                        if (element.onNext != null) element.onNext!();
                       }
                     : () {},
                 child: Scaffold(
@@ -75,7 +77,8 @@ class Tutorial {
                                     if (count != entries.length) {
                                       overlayState.insert(entries[count]);
                                     }
-                                    if(element.onNext != null) element.onNext!();
+                                    if (element.onNext != null)
+                                      element.onNext!();
                                   },
                                 ),
                               ),
