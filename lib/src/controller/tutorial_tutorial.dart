@@ -28,7 +28,6 @@ class Tutorial {
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
                         }
-                        if (element.onNext != null) element.onNext!();
                       }
                     : () {},
                 child: Scaffold(
@@ -77,8 +76,6 @@ class Tutorial {
                                     if (count != entries.length) {
                                       overlayState.insert(entries[count]);
                                     }
-                                    if (element.onNext != null)
-                                      element.onNext!();
                                   },
                                 ),
                               ),

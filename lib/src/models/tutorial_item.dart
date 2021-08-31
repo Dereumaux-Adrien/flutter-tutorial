@@ -13,7 +13,6 @@ class TutorialItem {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final bool touchScreen;
-  final Function()? onNext;
 
   TutorialItem({
     this.globalKey,
@@ -26,6 +25,5 @@ class TutorialItem {
     this.backgroundColor,
     this.borderRadius,
     this.touchScreen = false,
-    this.onNext,
   });
 }
