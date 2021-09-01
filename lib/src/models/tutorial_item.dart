@@ -10,6 +10,7 @@ class TutorialItem {
   final Widget? widgetNext;
   final Color? backgroundColor;
   final Radius? borderRadius;
+  final EdgeInsets extraPadding;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final bool touchScreen;
@@ -24,6 +25,7 @@ class TutorialItem {
     this.widgetNext,
     this.backgroundColor,
     this.borderRadius,
+    this.extraPadding = EdgeInsets.zero,
     this.touchScreen = false,
   });
 }

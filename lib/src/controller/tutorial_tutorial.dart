@@ -38,10 +38,18 @@ class Tutorial {
                         size: size,
                         painter: HolePainter(
                           shapeFocus: element.shapeFocus,
-                          dx: offset.dx + (sizeWidget.width / 2),
-                          dy: offset.dy + (sizeWidget.height / 2),
-                          width: sizeWidget.width,
-                          height: sizeWidget.height,
+                          dx: offset.dx +
+                              (sizeWidget.width / 2) -
+                              element.extraPadding.left,
+                          dy: offset.dy +
+                              (sizeWidget.height / 2) -
+                              element.extraPadding.top,
+                          width: sizeWidget.width +
+                              element.extraPadding.left +
+                              element.extraPadding.right,
+                          height: sizeWidget.height +
+                              element.extraPadding.top +
+                              element.extraPadding.bottom,
                           color: element.backgroundColor,
                           borderRadius: element.borderRadius,
                         ),
