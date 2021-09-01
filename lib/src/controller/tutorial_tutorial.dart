@@ -10,12 +10,12 @@ class Tutorial {
     List<TutorialItem> children,
   ) async {
     int count = 0;
-    var size = MediaQuery.of(context).size;
+    var sizeScreen = MediaQuery.of(context).size;
     OverlayState overlayState = Overlay.of(context)!;
     List<OverlayEntry> entries = [];
     children.forEach(
       (element) async {
-        var offset = _capturePositionWidget(element.globalKey!);
+        var offsetWidget = _capturePositionWidget(element.globalKey!);
         var sizeWidget = _getSizeWidget(element.globalKey!);
         entries.add(
           OverlayEntry(
@@ -35,13 +35,13 @@ class Tutorial {
                   body: Stack(
                     children: [
                       CustomPaint(
-                        size: size,
+                        size: sizeScreen,
                         painter: HolePainter(
                           shapeFocus: element.shapeFocus,
-                          dx: offset.dx +
+                          dx: offsetWidget.dx +
                               (sizeWidget.width / 2) -
                               element.extraPadding.left,
-                          dy: offset.dy +
+                          dy: offsetWidget.dy +
                               (sizeWidget.height / 2) -
                               element.extraPadding.top,
                           width: sizeWidget.width +
