@@ -1,5 +1,6 @@
 library tutorial;
 
+import 'package:app_tutorial/src/components/tutorial_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:app_tutorial/src/models/tutorial_item.dart';
 import 'package:app_tutorial/src/painter/painter.dart';
@@ -54,43 +55,12 @@ class Tutorial {
                           borderRadius: element.borderRadius,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: element.children,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: GestureDetector(
-                                  child: element.widgetNext ??
-                                      Text(
-                                        "NEXT",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                  onTap: () {
-                                    entries[count].remove();
-                                    count++;
-                                    if (count != entries.length) {
-                                      overlayState.insert(entries[count]);
-                                    }
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      TutorialLayout(
+                        tutorialItem: element,
+                        offsetWidget: offsetWidget,
+                        sizeWidget: sizeWidget,
+                        sizeScreen: sizeScreen,
+                      )
                     ],
                   ),
                 ),
