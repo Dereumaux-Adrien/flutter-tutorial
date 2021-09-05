@@ -21,10 +21,10 @@ class TutorialLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dy = offsetWidget.dy +
+    var positionHoleY = offsetWidget.dy +
         (sizeWidget.height / 2) -
         tutorialItem.extraPadding.top;
-    var height = sizeWidget.height +
+    var heightHole = sizeWidget.height +
         tutorialItem.extraPadding.top +
         tutorialItem.extraPadding.bottom;
     var children = <Widget>[];
@@ -32,10 +32,10 @@ class TutorialLayout extends StatelessWidget {
       case ChildrenLayout.bottom:
         children = [
           SizedBox(
-            height: dy,
+            height: positionHoleY,
           ),
           SizedBox(
-            height: height,
+            height: heightHole,
           ),
           Expanded(
             child: Column(
@@ -48,43 +48,77 @@ class TutorialLayout extends StatelessWidget {
       case ChildrenLayout.top:
         children = [
           SizedBox(
-            height: dy,
+            height: positionHoleY,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: tutorialItem.children,
             ),
           ),
           SizedBox(
-            height: height,
+            height: heightHole,
           ),
         ];
         break;
       case ChildrenLayout.auto:
-        var ratio =
-            ((dy * tutorialItem.children.length) / (sizeWidget.height - height))
-                .floor();
-        var childrenTop = tutorialItem.children.getRange(0, ratio).toList();
-        var childrenBottom = tutorialItem.children
-            .getRange(ratio, tutorialItem.children.length - 1)
-            .toList();
-        children = [
-          SizedBox(
-            height: dy,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: childrenTop,
+        var childrenLength = tutorialItem.children.length;
+        if (childrenLength > 1) {
+          var ratio = ((positionHoleY * childrenLength) /
+                  (sizeScreen.height - heightHole))
+              .floor();
+          var childrenTop = tutorialItem.children.getRange(0, ratio).toList();
+          var childrenBottom = tutorialItem.children
+              .getRange(ratio, childrenLength - 1)
+              .toList();
+          children = [
+            SizedBox(
+              height: positionHoleY,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: childrenTop,
+              ),
             ),
-          ),
-          SizedBox(
-            height: height,
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: childrenBottom,
+            SizedBox(
+              height: heightHole,
             ),
-          ),
-        ];
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: childrenBottom,
+              ),
+            ),
+          ];
+        } else {
+          if (positionHoleY > sizeScreen.height - heightHole - positionHoleY)
+            // If the space is bigger above the hole
+            children = [
+              SizedBox(
+                height: positionHoleY,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: tutorialItem.children,
+                ),
+              ),
+              SizedBox(
+                height: heightHole,
+              ),
+            ];
+          else
+            // If the space is bigger under of the hole
+            children = [
+              SizedBox(
+                height: positionHoleY,
+              ),
+              SizedBox(
+                height: heightHole,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: tutorialItem.children,
+                ),
+              ),
+            ];
+        }
         break;
       default: // includes ChildrenLayout.none
         children = tutorialItem.children;
