@@ -1,12 +1,14 @@
 library tutorial;
 
+import 'dart:async';
+
 import 'package:app_tutorial/src/components/tutorial_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:app_tutorial/src/models/tutorial_item.dart';
 import 'package:app_tutorial/src/painter/painter.dart';
 
 class Tutorial {
-  static showTutorial(
+  static Future<void> showTutorial(
     BuildContext context,
     List<TutorialItem> children,
   ) async {
@@ -14,6 +16,11 @@ class Tutorial {
     var sizeScreen = MediaQuery.of(context).size;
     OverlayState overlayState = Overlay.of(context)!;
     List<OverlayEntry> entries = [];
+
+    /// Completer is used to make this function a real Future that can be
+    /// checked to allow for an execution to take place after the Tutorial
+    var completer = new Completer<void>();
+
     children.forEach(
       (element) async {
         var offsetWidget = _capturePositionWidget(element.globalKey!);
@@ -28,6 +35,8 @@ class Tutorial {
                         count++;
                         if (count != entries.length) {
                           overlayState.insert(entries[count]);
+                        } else {
+                          completer.complete();
                         }
                       }
                     : () {},
@@ -71,6 +80,8 @@ class Tutorial {
       },
     );
     overlayState.insert(entries[0]);
+
+    return completer.future;
   }
 
   static Offset _capturePositionWidget(GlobalKey key) {
