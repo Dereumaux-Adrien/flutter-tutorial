@@ -18,7 +18,7 @@ class TutorialItem {
   TutorialItem({
     this.globalKey,
     required this.children,
-    this.childrenLayout = ChildrenLayout.none,
+    this.childrenLayout = ChildrenLayout.auto,
     this.shapeFocus,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisAlignment = MainAxisAlignment.center,
