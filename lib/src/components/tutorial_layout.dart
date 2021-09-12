@@ -24,9 +24,7 @@ class TutorialLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var positionHoleY = offsetWidget.dy +
-        (sizeWidget.height / 2) -
-        tutorialItem.extraPadding.top;
+    var positionHoleY = offsetWidget.dy - tutorialItem.extraPadding.top;
     var heightHole = sizeWidget.height +
         tutorialItem.extraPadding.top +
         tutorialItem.extraPadding.bottom;
@@ -60,19 +58,21 @@ class TutorialLayout extends StatelessWidget {
               sizeScreen: sizeScreen,
             );
           } else {
-            if (positionHoleY > sizeScreen.height - heightHole - positionHoleY)
+            if (positionHoleY >
+                sizeScreen.height - (heightHole + positionHoleY)) {
               // If the space is bigger above the hole
               layout = TopOnlyLayout(
                 children: tutorialItem.children,
                 positionHoleY: positionHoleY,
               );
-            else
+            } else {
               // If the space is bigger under of the hole
               layout = BottomOnlyLayout(
                 children: tutorialItem.children,
                 positionHoleY: positionHoleY,
                 heightHole: heightHole,
               );
+            }
           }
           break;
         default: // includes ChildrenLayout.none
